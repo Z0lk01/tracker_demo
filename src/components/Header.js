@@ -1,15 +1,22 @@
 import React from 'react';
 
-function Header({ startTour }) {
+function Header({ startTour, toggleLanguage, title, tourText, langText }) {
   return (
     <div className="header">
-      <h1>Personal Finance Tracker</h1>
+      <h1>{title}</h1>
       <button 
         className="tour-button" 
         onClick={startTour}
         data-testid="start-tour-button"
       >
-        Take a Tour
+        {tourText}
+      </button>
+      <button 
+        className="lang-button" 
+        onClick={toggleLanguage}  
+        data-testid="change-lang-button"
+      >
+        {langText}
       </button>
     </div>
   );

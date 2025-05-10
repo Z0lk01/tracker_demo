@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'intro.js/introjs.css';
 import introJs from 'intro.js';
+import languageDictionary from './language';
 
 // Component imports
 import Header from './components/Header';
@@ -19,7 +20,8 @@ function App() {
   const [currentBalance, setCurrentBalance] = useState(0);
   const [income, setIncome] = useState(0);
   const [expenses, setExpenses] = useState(0);
-  
+  const [language, setLanguage] = useState('en'); // Default to English
+
   useEffect(() => {
     // Save transactions to localStorage
     localStorage.setItem('transactions', JSON.stringify(transactions));
@@ -85,16 +87,19 @@ function App() {
   
   // Run the tour on first visit
   useEffect(() => {
-    const hasSeenTour = localStorage.getItem('hasSeenTour');
-    if (!hasSeenTour) {
-      // Small delay to ensure components are rendered
+    // Small delay to ensure components are rendered
       const timer = setTimeout(() => {
         startTour();
-        localStorage.setItem('hasSeenTour', 'true');
-      }, 60);
+      }, 3000);
       return () => clearTimeout(timer);
-    }
-  }, []);
+    }, []);
+
+  // Function to toggle language
+  const toggleLanguage = () => {
+    setLanguage((prevLanguage) => (prevLanguage === 'en' ? 'sk' : 'en'));
+  };
+
+  const currentLanguage = languageDictionary[language];
 
   return (
     <div className="App">
