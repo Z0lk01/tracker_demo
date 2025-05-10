@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'intro.js/introjs.css';
 import introJs from 'intro.js';
-import languageDictionary from './language';
+import languageDictionary from './dictionary.js';
 
 // Component imports
 import Header from './components/Header';
