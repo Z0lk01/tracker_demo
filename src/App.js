@@ -103,7 +103,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header startTour={startTour} />
+      <Header 
+        startTour={startTour} 
+        toggleLanguage={toggleLanguage} 
+        title={currentLanguage.headerTitle} 
+        tourText={currentLanguage.takeTour} 
+        langText={currentLanguage.changeLanguage} 
+      />
       <div className="container">
         <Dashboard 
           currentBalance={currentBalance}
