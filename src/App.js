@@ -91,7 +91,7 @@ function App() {
       const timer = setTimeout(() => {
         startTour();
         localStorage.setItem('hasSeenTour', 'true');
-      }, 1000);
+      }, 60);
       return () => clearTimeout(timer);
     }
   }, []);
