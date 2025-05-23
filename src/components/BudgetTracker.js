@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function BudgetTracker({ transactions }) {
+function BudgetTracker({ transactions, dictionary }) {
   const [budgets, setBudgets] = useState(() => {
     const savedBudgets = localStorage.getItem('budgets');
     return savedBudgets ? JSON.parse(savedBudgets) : {
@@ -59,13 +59,13 @@ function BudgetTracker({ transactions }) {
   return (
     <div className="budget-tracker" data-testid="budget-tracker">
       <div className="budget-header">
-        <h3>Budget Tracker</h3>
+        <h3>{dictionary.budgetTracker}</h3>
         <button 
           className="edit-budget-btn" 
           onClick={handleEditBudget}
           data-testid="edit-budget-button"
         >
-          {editMode ? 'Save Budgets' : 'Edit Budgets'}
+          {editMode ? dictionary.save : dictionary.edit}
         </button>
       </div>
       

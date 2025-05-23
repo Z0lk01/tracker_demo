@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TransactionList({ transactions, deleteTransaction }) {
+function TransactionList({ transactions, deleteTransaction, dictionary }) {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -8,10 +8,10 @@ function TransactionList({ transactions, deleteTransaction }) {
 
   return (
     <div className="transaction-list">
-      <h3>Transaction History</h3>
+      <h3>{dictionary.transactions}</h3>
       <ul className="list" data-testid="transactions-list">
         {transactions.length === 0 ? (
-          <li className="empty-message">No transactions yet. Add one above!</li>
+          <li className="empty-message">{dictionary.noTransactions}</li>
         ) : (
           transactions.map(transaction => (
             <li 
@@ -33,6 +33,7 @@ function TransactionList({ transactions, deleteTransaction }) {
                 className="delete-btn" 
                 onClick={() => deleteTransaction(transaction.id)}
                 data-testid={`delete-btn-${transaction.id}`}
+                title={dictionary.delete}
               >
                 x
               </button>

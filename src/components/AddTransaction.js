@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AddTransaction({ addTransaction }) {
+function AddTransaction({ addTransaction, dictionary }) {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -36,22 +36,22 @@ function AddTransaction({ addTransaction }) {
 
   return (
     <div className="transaction-form">
-      <h3>Add New Transaction</h3>
+      <h3>{dictionary.addTransaction}</h3>
       <form onSubmit={onSubmit} data-testid="transaction-form">
         <div className="form-control">
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">{dictionary.description}</label>
           <input
             type="text"
             id="description"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Enter description..."
+            placeholder={dictionary.enterDescription}
             data-testid="description-input"
           />
         </div>
         <div className="form-control">
           <label htmlFor="amount">
-            Amount <br />
+            {dictionary.amount} <br />
             (negative - expense, positive - income)
           </label>
           <input
@@ -59,25 +59,25 @@ function AddTransaction({ addTransaction }) {
             id="amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount..."
+            placeholder={dictionary.enterAmount}
             data-testid="amount-input"
           />
         </div>
         <div className="form-control">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category">{dictionary.category}</label>
           <select
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             data-testid="category-select"
           >
-            <option value="">Select Category</option>
+            <option value="">{dictionary.selectCategory}</option>
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
           </select>
         </div>
-        <button className="btn" data-testid="add-transaction-button">Add Transaction</button>
+        <button className="btn" data-testid="add-transaction-button">{dictionary.addTransaction}</button>
       </form>
     </div>
   );

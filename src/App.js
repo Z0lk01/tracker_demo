@@ -55,6 +55,9 @@ function App() {
     setTransactions(transactions.filter(transaction => transaction.id !== id));
   };
   
+  // Current language dictionary
+  const currentLanguage = languageDictionary[language];
+  
   // Start the intro.js tour
   const startTour = () => {
     const intro = introJs();
@@ -62,19 +65,27 @@ function App() {
       steps: [
         {
           element: '.dashboard',
-          intro: 'This is your financial dashboard. It gives you an overview of your finances at a glance.'
+          intro: currentLanguage === languageDictionary.en ? 
+            'This is your financial dashboard. It gives you an overview of your finances at a glance.' :
+            'Toto je váš finančný prehľad. Dáva vám prehľad o vašich financiách na prvý pohľad.'
         },
         {
           element: '.transaction-form',
-          intro: 'Add your income and expenses here. Use positive numbers for income and negative for expenses.'
+          intro: currentLanguage === languageDictionary.en ? 
+            'Add your income and expenses here. Use positive numbers for income and negative for expenses.' :
+            'Tu pridajte vaše príjmy a výdavky. Použite kladné čísla pre príjmy a záporné pre výdavky.'
         },
         {
           element: '.transaction-list',
-          intro: 'All your transactions are listed here. You can delete any transaction by clicking the X button.'
+          intro: currentLanguage === languageDictionary.en ? 
+            'All your transactions are listed here. You can delete any transaction by clicking the X button.' :
+            'Tu sú uvedené všetky vaše transakcie. Akúkoľvek transakciu môžete vymazať kliknutím na tlačidlo X.'
         },
         {
           element: '.budget-tracker',
-          intro: 'Track your spending against your budget goals in different categories.'
+          intro: currentLanguage === languageDictionary.en ? 
+            'Track your spending against your budget goals in different categories.' :
+            'Sledujte svoje výdavky voči rozpočtovým cieľom v rôznych kategóriách.'
         }
       ],
       showProgress: true,
@@ -99,8 +110,6 @@ function App() {
     setLanguage((prevLanguage) => (prevLanguage === 'en' ? 'sk' : 'en'));
   };
 
-  const currentLanguage = languageDictionary[language];
-
   return (
     <div className="App">
       <Header 
@@ -115,17 +124,25 @@ function App() {
           currentBalance={currentBalance}
           income={income}
           expenses={expenses}
+          dictionary={currentLanguage}
         />
         <div className="content-wrapper">
           <div className="left-panel">
-            <AddTransaction addTransaction={addTransaction} />
+            <AddTransaction 
+              addTransaction={addTransaction} 
+              dictionary={currentLanguage} 
+            />
             <TransactionList 
               transactions={transactions} 
               deleteTransaction={deleteTransaction} 
+              dictionary={currentLanguage} 
             />
           </div>
           <div className="right-panel">
-            <BudgetTracker transactions={transactions} />
+            <BudgetTracker 
+              transactions={transactions} 
+              dictionary={currentLanguage} 
+            />
           </div>
         </div>
       </div>
