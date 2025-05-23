@@ -54,7 +54,7 @@ const languageDictionary = {
     previous: "Predchádzajúci",
     next: "Ďalší",
     transactions: "História transakcií",
-    budgetTracker: "Sledovač rozpočtu",
+    budgetTracker: "Tracker rozpočtu",
     // Add more as needed
   },
 };
